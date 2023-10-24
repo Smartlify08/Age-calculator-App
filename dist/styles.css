@@ -1,0 +1,138 @@
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+:root {
+  --Purple: hsl(259, 100%, 65%);
+  --Lightred: hsl(0, 100%, 67%);
+  --White: hsl(0, 0%, 100%);
+  --Offwhite: hsl(0, 0%, 94%);
+  --Lightgrey: hsl(0, 0%, 86%);
+  --Smokeygrey: hsl(0, 1%, 44%);
+  --offblack: hsl(0, 0%, 8%);
+
+  --font-input: 32px;
+  --font: "Poppins", sans-serif;
+}
+
+body {
+  font-family: var(--font) !important;
+  height: 100vh;
+  align-items: center !important;
+  border: 2px solid;
+}
+
+.container {
+  border: none !important;
+}
+
+.text-dark {
+  color: var(--offblack);
+}
+
+label {
+  color: var(--Smokeygrey);
+}
+
+input[type="text"] {
+  color: var(--offblack);
+}
+
+input::placeholder {
+  color: var(--Smokeygrey) !important;
+}
+
+.card {
+  width: 350px !important;
+  border: none;
+  border-radius: 20px;
+  border-bottom-right-radius: 100px;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--Purple);
+  top: -1300%;
+  left: 40%;
+}
+
+.highlight {
+  color: var(--Purple) !important;
+}
+
+.output {
+  font-size: 3rem;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.horizontal {
+  height: 0px !important;
+}
+
+@media (width > 1000px) {
+  .card {
+    width: 500px !important;
+    padding: 1rem 2.3rem !important;
+    border-bottom-right-radius: 150px !important;
+  }
+
+  .circle {
+    left: 90%;
+    top: -2200%;
+    width: 50px;
+    height: 50px;
+
+    & img {
+      width: 30px;
+    }
+  }
+
+  label {
+    font-size: 0.9rem;
+  }
+
+  .inputs {
+    width: 75% !important;
+
+    & input {
+      font-size: 1.3rem !important;
+      width: 100%;
+      width: 80px;
+    }
+  }
+
+  .output {
+    line-height: 5rem !important;
+    font-size: 4rem;
+  }
+}
+
+@media (width > 767px) and (width < 1000px) {
+  .card {
+    width: 500px !important;
+  }
+
+  label {
+    font-size: 0.7rem !important;
+  }
+
+  .output {
+    line-height: 4.4rem !important;
+    font-size: 3.5rem;
+  }
+
+  .inputs {
+    width: 80%;
+  }
+
+  .circle {
+    left: 43%;
+    width: 40px;
+    height: 40px;
+  }
+}

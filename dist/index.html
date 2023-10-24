@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <title>Frontend Mentor | Age calculator app</title>
+  </head>
+  <body class="d-flex justify-content-center align-items-center bg-light">
+    <div
+      class="container d-flex flex-column justify-content-center align-items-center border border-2"
+    >
+      <div class="card p-lg-4 py-5 px-4">
+        <section
+          class="inputs d-flex justify-content-lg-start align-items-center justify-content-center text-secondary gap-5 mb-4"
+        >
+          <div class="input-box d-flex flex-column gap-1">
+            <label for="day" class="form-label">DAY</label>
+            <input
+              type="text"
+              name="day"
+              id="day"
+              placeholder="DD"
+              class="form-control p-2 text-dark p-lg-2"
+            />
+          </div>
+          <div class="input-box d-flex flex-column gap-1">
+            <label for="month" class="form-label">MONTH</label>
+            <input
+              type="text"
+              name="month"
+              id="month"
+              placeholder="MM"
+              class="form-control p-2 text-dark p-lg-2"
+            />
+          </div>
+          <div class="input-box d-flex flex-column gap-1">
+            <label for="year" class="form-label">YEAR</label>
+            <input
+              type="text"
+              name="year"
+              id="year"
+              placeholder="YYYY"
+              class="form-control p-2 text-dark p-lg-2"
+            />
+          </div>
+        </section>
+
+        <div class="arrow-holder d-flex my-5 my-md-3 my-lg-1 position-relative">
+          <div class="border border-1 d-inline w-100 horizontal"></div>
+          <div class="circle d-flex justify-content-center position-absolute">
+            <img src="images/icon-arrow.svg" alt="arrow-icon" width="25px" />
+          </div>
+        </div>
+
+        <section class="output mt-md-1 mt-lg-2">
+          <div class="year-output">
+            <p class="year highlight d-inline">38</p>
+            <span class="text-dark">years</span>
+          </div>
+          <div class="month-output">
+            <p class="month highlight d-inline">5</p>
+            <span class="text-dark">months</span>
+          </div>
+          <div class="day-output">
+            <p class="day highlight d-inline">26</p>
+            <span class="text-dark">days</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
