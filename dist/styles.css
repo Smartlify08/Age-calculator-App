@@ -28,8 +28,21 @@ body {
   border: none !important;
 }
 
+.border-danger {
+  border-color: var(--Lightred) !important;
+}
+
 .text-dark {
   color: var(--offblack);
+}
+
+.err-msg {
+  color: var(--Lightred);
+  font-size: 0.4rem;
+  font-weight: 400;
+  font-style: italic;
+  position: absolute;
+  top: 100%;
 }
 
 label {
