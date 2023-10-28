@@ -37,9 +37,9 @@ Users should be able to:
 ### Screenshot
 
 ![](./screenshots/desktop-view.png)
-![](./screenshots/Error%20state%20all.png.png)
-![](./screenshots/Mobile%20view.png.png)
-![](./screenshots/Error%20state.png.png)
+![](./screenshots/Error%20state%20all.png)
+![](./screenshots/Mobile%20view.png)
+![](./screenshots/Error%20state.png)
 
 ### Links
 
