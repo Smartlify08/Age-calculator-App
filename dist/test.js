@@ -29,7 +29,7 @@ function timeout(param) {
 function showBorder(param) {
   param.parentElement.children[0].style.color = "var(--Lightred)";
   param.className = "border border-1 border-danger rounded-2 p-2 p-lg-2";
-  setTimeout(() => timeout(param), 3000);
+  setTimeout(() => timeout(param), 10000);
 }
 
 function showNoContent() {
@@ -118,4 +118,23 @@ btn_output.addEventListener("click", () => {
     err_msg.textContent = "Must be in the past";
     showBorder(year_input);
   }
+
+  const thirtydaymonths = ["4", "6", "11", "9"];
+
+  thirtydaymonths.forEach((thirtydaymonth) => {
+    if (
+      (month_input.value == thirtydaymonth && day_input.value > 30) ||
+      (month_input.value == 2 && day_input.value > 29)
+    ) {
+      const err_msg = document.createElement("p");
+      day_input.parentElement.style.position = "relative";
+      day_input.parentElement.append(err_msg);
+      err_msg.className = "err-msg";
+      err_msg.textContent = "Must be a valid date";
+      showBorder(day_input);
+      showBorder(month_input);
+      showBorder(year_input);
+      showNoContent();
+    }
+  });
 });
