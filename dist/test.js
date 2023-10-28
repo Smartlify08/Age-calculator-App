@@ -17,21 +17,27 @@ const year_output = document.querySelector(".year");
 // if the current month < month input value then do current month - month input value + 12
 // If the current day < day input value then do currentday - dayinput value + 7
 
+//  Timeout function to set the input back to normal state
 function timeout(param) {
   param.className = "form-control p-2 p-lg-2";
   param.previousElementSibling.style.color = "var(--Smokeygrey)";
   param.classList.remove("border-danger");
+
+  // check for existing error message to completely remove error message when timeout is reached
   const existingErrMsg = param.parentElement.querySelector(".err-msg");
   if (existingErrMsg) {
     existingErrMsg.remove();
   }
 }
+
+//  Show border function to create borders around input
 function showBorder(param) {
   param.parentElement.children[0].style.color = "var(--Lightred)";
   param.className = "border border-1 border-danger rounded-2 p-2 p-lg-2";
   setTimeout(() => timeout(param), 3000);
 }
 
+//  Set the content to --
 function showNoContent() {
   day_output.textContent = "--";
   month_output.textContent = "--";
@@ -39,6 +45,7 @@ function showNoContent() {
 }
 
 btn_output.addEventListener("click", () => {
+  //  Change background color of button
   btn_output.style.backgroundColor = "var(--offblack)";
   setTimeout(() => {
     btn_output.style.backgroundColor = "var(--Purple)";
@@ -51,6 +58,7 @@ btn_output.addEventListener("click", () => {
   // Errors
   // Day > 31 or < 1, month > 12 or < 1, year > currentYear
   // Conditions true? then textCOntents remain the same show border
+  //  Checks if the months lived is negative due to the month input value being greater than the currentMonth
 
   if (getMonthsLived < 0 && month_input.value <= 12) {
     getMonthsLived += 12;
@@ -93,6 +101,8 @@ btn_output.addEventListener("click", () => {
     err_msg.textContent = "This field is required";
   }
 
+  //  Check for invalid input values
+
   if (day_input.value > 31 || (day_input.value < 1 && day_input.value != "")) {
     const err_msg = document.createElement("p");
     day_input.parentElement.style.position = "relative";
@@ -113,6 +123,7 @@ btn_output.addEventListener("click", () => {
     showNoContent();
     month_output.textContent = "--";
   }
+
   if (year_input.value > currentYear && year_input.value != "") {
     showNoContent();
     const err_msg = document.createElement("p");
@@ -123,8 +134,10 @@ btn_output.addEventListener("click", () => {
     showBorder(year_input);
   }
 
+  // Using numbers to represent months with thirty days
   const thirtydaymonths = ["4", "6", "11", "9"];
 
+  // Checks for months that have only thirty days and february
   thirtydaymonths.forEach((thirtydaymonth) => {
     if (
       (month_input.value == thirtydaymonth && day_input.value > 30) ||
