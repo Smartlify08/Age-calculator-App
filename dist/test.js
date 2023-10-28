@@ -39,6 +39,10 @@ function showNoContent() {
 }
 
 btn_output.addEventListener("click", () => {
+  btn_output.style.backgroundColor = "var(--offblack)";
+  setTimeout(() => {
+    btn_output.style.backgroundColor = "var(--Purple)";
+  }, 3000);
   showNoContent();
   const getYearsLived = currentYear - year_input.value;
   let getDaysLived = parseInt(currentDate - day_input.value);
