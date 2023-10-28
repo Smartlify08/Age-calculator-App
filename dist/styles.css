@@ -21,7 +21,7 @@ body {
   font-family: var(--font) !important;
   height: 100vh;
   align-items: center !important;
-  border: 2px solid;
+  background-color: var(--Offwhite);
 }
 
 .container {
@@ -38,7 +38,7 @@ body {
 
 .err-msg {
   color: var(--Lightred);
-  font-size: 0.4rem;
+  font-size: 0.5rem;
   font-weight: 400;
   font-style: italic;
   position: absolute;
@@ -50,7 +50,8 @@ label {
 }
 
 input[type="text"] {
-  color: var(--offblack);
+  color: var(--offblack) !important;
+  width: 100% !important;
 }
 
 input::placeholder {
@@ -110,7 +111,7 @@ input::placeholder {
   }
 
   .inputs {
-    width: 75% !important;
+    width: 85% !important;
 
     & input {
       font-size: 1.3rem !important;

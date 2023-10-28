@@ -22,7 +22,7 @@ class ErrorHandler {
     param.className = "border border-1 border-danger form-control p-2 p-lg-2";
     param.previousElementSibling.style.color = "var(--Lightred)";
 
-    setTimeout(() => this.timeout(param), 3000);
+    setTimeout(() => this.timeout(param), 20000);
   }
 
   dayInvalid(day) {
@@ -146,41 +146,28 @@ class Verifyall {
 
   checkFields(day, month, year, input) {
     const errorHandler = new ErrorHandler();
+    const day_output = document.querySelector(".day");
+    const month_output = document.querySelector(".month");
+    const year_output = document.querySelector(".year");
 
-    const dayOnly =
-      day.value != "" &&
-      month.value == "" &&
-      year.value == "" &&
-      !this.calculateDay(day, month);
-    const monthOnly =
-      day.value == "" &&
-      month.value != "" &&
-      year.value == "" &&
-      !this.calculateMonth(month);
-    const yearOnly =
-      day.value == "" &&
-      month.value == "" &&
-      year.value != "" &&
-      !this.calculateYear(year);
+    const dayOnly = day.value != "" && month.value == "" && year.value == "";
+
+    const monthOnly = day.value == "" && month.value != "" && year.value == "";
+
+    const yearOnly = day.value == "" && month.value == "" && year.value != "";
     const allEmpty = day.value == "" && month.value == "" && year.value == "";
 
-    if (dayOnly) {
-      errorHandler.dayInvalid(day);
-      errorHandler.showBorder(month);
-      errorHandler.showBorder(year);
+    if (dayOnly === true || monthOnly === true || yearOnly === true) {
+      day_output.textContent = "-";
+      console.log("day only");
     }
-    if (monthOnly) {
-      errorHandler.monthInvalid(month);
-      errorHandler.showBorder(day);
-      errorHandler.showBorder(year);
-    }
-    if (yearOnly) {
-      errorHandler.yearInvalid(year);
-      errorHandler.showBorder(month);
-      errorHandler.showBorder(day);
-    }
-    if (allEmpty) {
-      errorHandler.emptyInputs(input);
+    // else if (monthOnly) {
+    // } else if (yearOnly) {
+    // }
+    // if (allEmpty) {
+    //   errorHandler.emptyInputs(input);
+    else {
+      day_output.textContent = this.calculateDay(day, month, year);
     }
   }
 }
@@ -190,6 +177,10 @@ function UI() {
   const month = document.querySelector("#month");
   const year = document.querySelector("#year");
   const btn_output = document.querySelector(".circle");
+  const year_output = document.querySelector(".year");
+  const day_output = document.querySelector(".day");
+  const month_output = document.querySelector(".month");
+  console.log(day_output);
 
   console.log(day.previousElementSibling);
 
@@ -207,13 +198,19 @@ function UI() {
   const verify = new Verifyall();
 
   btn_output.addEventListener("click", () => {
-    if (verify.checkFields(day, month, year, input_box)) {
-      console.log(checkFields(day, month, year, input_box));
-      return;
+    if (!verify.checkFields(day, month, year, input_box)) {
     }
 
+    if (
+      !verify.calculateYear(year) ||
+      !verify.calculateMonth(month) ||
+      !verify.calculateDay(day, month, year)
+    ) {
+      console.log("Invalid");
+    }
     const outputYear = verify.calculateYear(year);
     console.log(outputYear);
+    year;
 
     console.log(verify.calculateMonth(month));
     console.log(verify.calculateDay(day, month, year));
