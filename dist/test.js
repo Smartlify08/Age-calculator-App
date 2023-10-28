@@ -29,7 +29,7 @@ function timeout(param) {
 function showBorder(param) {
   param.parentElement.children[0].style.color = "var(--Lightred)";
   param.className = "border border-1 border-danger rounded-2 p-2 p-lg-2";
-  setTimeout(() => timeout(param), 10000);
+  setTimeout(() => timeout(param), 3000);
 }
 
 function showNoContent() {
