@@ -55,11 +55,14 @@ btn_output.addEventListener("click", () => {
   let getDaysLived = parseInt(currentDate - day_input.value);
   let getMonthsLived = parseInt(currentMonth - month_input.value);
 
-  // Errors
-  // Day > 31 or < 1, month > 12 or < 1, year > currentYear
-  // Conditions true? then textCOntents remain the same show border
-  //  Checks if the months lived is negative due to the month input value being greater than the currentMonth
-
+  //  Checks if the ages are zero values and sets them to zero
+  if (getDaysLived == 0 || getYearsLived == 0 || getMonthsLived == 0) {
+    console.log("They are equal to zero");
+    month_output.textContent = "0";
+    year_output.textContent = "0";
+    day_output.textContent = "0";
+  }
+  //  Checks if the month lived and day lived are less than 0 and adds 12 to months and 7 to the days
   if (getMonthsLived < 0 && month_input.value <= 12) {
     getMonthsLived += 12;
   }
@@ -67,12 +70,55 @@ btn_output.addEventListener("click", () => {
     getDaysLived += 7;
   }
 
-  day_output.textContent = getDaysLived;
-  month_output.textContent = getMonthsLived;
-  year_output.textContent = getYearsLived;
+  // ------- Intervals for the count up animation--------
+  let yearId = setInterval(yearFrame, 120);
+  let monthId = setInterval(monthFrame, 130);
+  let dayId = setInterval(dayFrame, 140);
+  let yearNum = 0;
+  let monthNum = 0;
+  let dayNum = 0;
+
+  //   Frame. Checks for conditions and sets the  output to text content
+  function yearFrame() {
+    if (yearNum == getYearsLived) {
+      clearInterval(yearId);
+    } else {
+      yearNum++;
+      year_output.textContent = yearNum;
+    }
+  }
+
+  function monthFrame() {
+    if (monthNum == getMonthsLived) {
+      clearInterval(monthId);
+    } else {
+      monthNum++;
+      console.log(monthNum);
+      month_output.textContent = monthNum;
+    }
+  }
+
+  function dayFrame() {
+    if (dayNum == getDaysLived) {
+      clearInterval(dayId);
+    } else {
+      dayNum++;
+      day_output.textContent = dayNum;
+    }
+  }
+
+  //  CLear all Intervals
+  function clearAllIntervals() {
+    clearInterval(dayId);
+    clearInterval(monthId);
+    clearInterval(yearId);
+  }
+
+  // year_output.textContent = getYearsLived;
 
   // Check for empty inputs
   if (year_input.value == "") {
+    clearAllIntervals();
     showNoContent();
     showBorder(year_input);
     const err_msg = document.createElement("p");
@@ -84,6 +130,7 @@ btn_output.addEventListener("click", () => {
   }
   if (month_input.value == "") {
     const err_msg = document.createElement("p");
+    clearAllIntervals();
     showNoContent();
     showBorder(month_input);
     month_input.parentElement.style.position = "relative";
@@ -93,6 +140,7 @@ btn_output.addEventListener("click", () => {
   }
   if (day_input.value == "") {
     const err_msg = document.createElement("p");
+    clearAllIntervals();
     showNoContent();
     showBorder(day_input);
     day_input.parentElement.style.position = "relative";
@@ -103,55 +151,65 @@ btn_output.addEventListener("click", () => {
 
   //  Check for invalid input values
 
-  if (day_input.value > 31 || (day_input.value < 1 && day_input.value != "")) {
-    const err_msg = document.createElement("p");
-    day_input.parentElement.style.position = "relative";
-    day_input.parentElement.append(err_msg);
-    err_msg.className = "err-msg";
-    err_msg.textContent = "Must be a valid day";
-    showBorder(day_input);
-    showNoContent();
-    day_output.textContent = "--";
-  }
-  if (month_input.value > 12 && month_input.value !== "") {
-    const err_msg = document.createElement("p");
-    month_input.parentElement.style.position = "relative";
-    month_input.parentElement.append(err_msg);
-    err_msg.className = "err-msg";
-    err_msg.textContent = "Must be a valid month";
-    showBorder(month_input);
-    showNoContent();
-    month_output.textContent = "--";
-  }
-
-  if (year_input.value > currentYear && year_input.value != "") {
-    showNoContent();
-    const err_msg = document.createElement("p");
-    year_input.parentElement.style.position = "relative";
-    year_input.parentElement.append(err_msg);
-    err_msg.className = "err-msg";
-    err_msg.textContent = "Must be in the past";
-    showBorder(year_input);
-  }
-
-  // Using numbers to represent months with thirty days
-  const thirtydaymonths = ["4", "6", "11", "9"];
-
-  // Checks for months that have only thirty days and february
-  thirtydaymonths.forEach((thirtydaymonth) => {
+  function checkValidInputs() {
     if (
-      (month_input.value == thirtydaymonth && day_input.value > 30) ||
-      (month_input.value == 2 && day_input.value > 29)
+      day_input.value > 31 ||
+      (day_input.value < 1 && day_input.value != "")
     ) {
       const err_msg = document.createElement("p");
       day_input.parentElement.style.position = "relative";
       day_input.parentElement.append(err_msg);
       err_msg.className = "err-msg";
-      err_msg.textContent = "Must be a valid date";
+      err_msg.textContent = "Must be a valid day";
+      clearAllIntervals();
       showBorder(day_input);
-      showBorder(month_input);
-      showBorder(year_input);
       showNoContent();
+      day_output.textContent = "--";
     }
-  });
+    if (month_input.value > 12 && month_input.value !== "") {
+      const err_msg = document.createElement("p");
+      clearAllIntervals();
+      month_input.parentElement.style.position = "relative";
+      month_input.parentElement.append(err_msg);
+      err_msg.className = "err-msg";
+      err_msg.textContent = "Must be a valid month";
+      showBorder(month_input);
+      showNoContent();
+      month_output.textContent = "--";
+    }
+
+    if (year_input.value > currentYear && year_input.value != "") {
+      showNoContent();
+      clearAllIntervals();
+      const err_msg = document.createElement("p");
+      year_input.parentElement.style.position = "relative";
+      year_input.parentElement.append(err_msg);
+      err_msg.className = "err-msg";
+      err_msg.textContent = "Must be in the past";
+      showBorder(year_input);
+    }
+
+    // Using numbers to represent months with thirty days
+    const thirtydaymonths = ["4", "6", "11", "9"];
+
+    // Checks for months that have only thirty days and february
+    thirtydaymonths.forEach((thirtydaymonth) => {
+      if (
+        (month_input.value == thirtydaymonth && day_input.value > 30) ||
+        (month_input.value == 2 && day_input.value > 29)
+      ) {
+        const err_msg = document.createElement("p");
+        day_input.parentElement.style.position = "relative";
+        day_input.parentElement.append(err_msg);
+        err_msg.className = "err-msg";
+        err_msg.textContent = "Must be a valid date";
+        showBorder(day_input);
+        showBorder(month_input);
+        showBorder(year_input);
+        showNoContent();
+        clearAllIntervals();
+      }
+    });
+  }
+  checkValidInputs();
 });
